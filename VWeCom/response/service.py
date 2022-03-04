@@ -567,3 +567,40 @@ class WeComCorpidToOpenCorpidRes(WeComResponseBase):
     def open_corpid(self):
         '''该服务商第三方应用下的企业ID'''
         return self._open_corpid
+
+class OpenUseridItem(MultiFillClass):
+    """该服务商第三方应用下的成员ID和open userid"""
+
+    def __init__(self, params: Union[dict, str] = {}):
+        self._userid : str = ''
+        self._open_userid : str = ''
+        super().__init__(params)
+
+
+    @property
+    def userid(self):
+        '''转换成功的userid'''
+        return self._userid
+
+    @property
+    def open_userid(self):
+        '''转换成功的userid对应的`该服务商应用下`的成员ID'''
+        return self._open_userid
+
+class WeComUseridToOpenUseridRes(WeComResponseBase):
+    """### userid转换  返回类"""
+
+    def __init__(self, params={}):
+        self._open_userid_list : List[dict] = []
+        self._invalid_userid_list : List[str] = []
+        super().__init__(params)
+    
+    @property
+    def open_userid_list(self):
+        '''转换成功的userid对应的`该服务商应用下`的成员ID'''
+        return [ OpenUseridItem(x) for x in self._open_userid_list ]
+
+    @property
+    def invalid_userid_list(self):
+        '''无效的用户ID'''
+        return self._invalid_userid_list

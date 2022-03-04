@@ -15,10 +15,9 @@ from ..response.service import (
     WeComGetPermanentCodeRes,
     WeComGetAuthInfoRes,
     WeComGetCorpTokenRes,
-    WeComCorpidToOpenCorpidRes
+    WeComCorpidToOpenCorpidRes,
+    WeComUseridToOpenUseridRes,
 )
-
-# from ..response.user import WeComUserGetRes,WeComUserGetUserinfoRes,WeComUserListRes
 
 
 class WeComService(WeCom):
@@ -112,40 +111,55 @@ class WeComService(WeCom):
         文档地址 https://developer.work.weixin.qq.com/document/path/90605
         """
 
-        url = 'https://qyapi.weixin.qq.com/cgi-bin/service/get_corp_token?suite_access_token={SUITE_ACCESS_TOKEN}'
+        url = "https://qyapi.weixin.qq.com/cgi-bin/service/get_corp_token?suite_access_token={SUITE_ACCESS_TOKEN}"
 
         body_data = {"auth_corpid": auth_corpid, "permanent_code": permanent_code}
-        
+
         res = self._do_request(url, method="POST", body_data=body_data)
 
         return WeComGetCorpTokenRes(res)
-    
-    def get_login_info(self,auth_code:str):
+
+    def get_login_info(self, auth_code: str):
         """### 获取登录用户信息
         - `auth_code` 授权码
 
         文档地址 https://developer.work.weixin.qq.com/document/path/91125
         """
 
-        url = 'https://qyapi.weixin.qq.com/cgi-bin/service/get_login_info?access_token={PROVIDER_ACCESS_TOKEN}'
+        url = "https://qyapi.weixin.qq.com/cgi-bin/service/get_login_info?access_token={PROVIDER_ACCESS_TOKEN}"
 
         body_data = {"auth_code": auth_code}
-        
+
         res = self._do_request(url, method="POST", body_data=body_data)
 
         return WeComGetLoginInfoRes(res)
 
-    def corpid_to_opencorpid(self,corpid:str):
+    def corpid_to_opencorpid(self, corpid: str):
         """### corpid转换
         - `corpid` 待获取的企业ID
 
         文档地址 https://developer.work.weixin.qq.com/document/path/95327
         """
 
-        url = 'https://qyapi.weixin.qq.com/cgi-bin/service/corpid_to_opencorpid?provider_access_token={PROVIDER_ACCESS_TOKEN}'
+        url = "https://qyapi.weixin.qq.com/cgi-bin/service/corpid_to_opencorpid?provider_access_token={PROVIDER_ACCESS_TOKEN}"
 
         body_data = {"corpid": corpid}
-        
+
         res = self._do_request(url, method="POST", body_data=body_data)
 
         return WeComCorpidToOpenCorpidRes(res)
+
+    def userid_to_openuserid(self, userid_list: List[str]):
+        """### userid的转换
+        - `userid_list` 获取到的成员ID
+
+        文档地址 https://developer.work.weixin.qq.com/document/path/95327
+        """
+
+        url = "https://qyapi.weixin.qq.com/cgi-bin/batch/userid_to_openuserid?access_token={SUITE_ACCESS_TOKEN}"
+
+        body_data = {"userid_list": userid_list}
+
+        res = self._do_request(url, method="POST", body_data=body_data)
+
+        return WeComUseridToOpenUseridRes(res)
