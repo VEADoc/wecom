@@ -1,0 +1,18 @@
+Metadata-Version: 1.1
+Name: veadoc-wecom-sdk
+Version: 0.0.1
+Summary: SDK for Wecom API
+Home-page: https://veadoc.com
+Author: VEADoc
+Author-email: 1126@veadoc.me
+License: MIT Licence
+Description: UNKNOWN
+Keywords: wechat,wecom,workwechat,wxwork
+Platform: any
+Classifier: Development Status :: 0 - Planning
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
