@@ -20,6 +20,12 @@ class WeComResponseBase(MultiFillClass):
         '''对返回码的文本描述内容'''
         return self._errmsg
     
+    @property
+    def is_success(self):
+        '''请求是否成功'''
+        # 服务商请求成功 无errcode值 
+        return self.errcode in [0,None]
+
 class WeComGetAccessTokenRes(WeComResponseBase):
     """### 获取access_token 返回类
     文档地址 : https://work.weixin.qq.com/api/doc/90000/90135/91039
