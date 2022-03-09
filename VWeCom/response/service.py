@@ -604,3 +604,10 @@ class WeComUseridToOpenUseridRes(WeComResponseBase):
     def invalid_userid_list(self):
         '''无效的用户ID'''
         return self._invalid_userid_list
+
+    def get_user(self,userid:str):
+        """获取转换完成后的user信息"""
+        res = [ x for x in self.open_userid_list if x.userid == userid ]
+        if res:
+            return res[0]
+        

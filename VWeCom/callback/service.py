@@ -23,8 +23,12 @@ class WeComServiceSuiteCallback(WeComServiceCallbackBase):
         self._SuiteId : str = ""
         self._InfoType : str = ""
         self._TimeStamp : str = ""
+        self._FromUserName : str = ""
         self._SuiteTicket : str = ""
         self._AuthCode : str = ""
+        self._Event : str = ""
+        self._MsgType : str = ""
+        self._AgentID :str = ""
         super().__init__(params)
     
     @property
@@ -51,3 +55,23 @@ class WeComServiceSuiteCallback(WeComServiceCallbackBase):
     def auth_code(self):
         '''授权码'''
         return self._AuthCode
+
+    @property
+    def event(self):
+        '''事件'''
+        return self._Event
+
+    @property
+    def msg_type(self):
+        '''消息类型'''
+        return self._MsgType
+
+    @property
+    def agent_id(self):
+        '''应用ID'''
+        return self._AgentID
+
+    @property
+    def from_username(self):
+        '''消息来源方'''
+        return self._FromUserName

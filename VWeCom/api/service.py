@@ -156,7 +156,7 @@ class WeComService(WeCom):
         文档地址 https://developer.work.weixin.qq.com/document/path/95327
         """
 
-        url = "https://qyapi.weixin.qq.com/cgi-bin/batch/userid_to_openuserid?access_token={SUITE_ACCESS_TOKEN}"
+        url = "https://qyapi.weixin.qq.com/cgi-bin/batch/userid_to_openuserid?access_token={ACCESS_TOKEN}"
 
         body_data = {"userid_list": userid_list}
 
